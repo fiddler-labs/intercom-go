@@ -60,7 +60,7 @@ func (c *Client) Option(opts ...option) (previous option) {
 }
 
 // NewClient returns a new Intercom API client, configured with the default HTTPClient.
-func NewClient(appID, apiKey string) *Client {
+func NewClient(apiKey string, debug bool) *Client {
 	intercom := Client{AppID: appID, APIKey: apiKey, baseURI: defaultBaseURI, debug: false, clientVersion: clientVersion}
 	intercom.HTTPClient = interfaces.NewIntercomHTTPClient(intercom.AppID, intercom.APIKey, &intercom.baseURI, &intercom.clientVersion, &intercom.debug)
 	intercom.setup()
