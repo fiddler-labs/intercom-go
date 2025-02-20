@@ -1,5 +1,7 @@
 github.com/fiddler-labs/intercom-go/interfaces v0.0.0-20250220193753-b48d3bf54c42 h1:b9oQnRK9+JQB6IBYZGm1bgpZ4cmEAiOXCwJvoJ2DBaY=
 github.com/fiddler-labs/intercom-go/interfaces v0.0.0-20250220193753-b48d3bf54c42/go.mod h1:D8H2uz0hp2Ay5s2/QPNorlSsg8CcD5pAQ3QJWn2PSjU=
+github.com/fiddler-labs/intercom-go/interfaces v0.0.0-20250220194224-4ff7641a0712 h1:lGf3NeCjUVfpYIFrc+Uuj3ezO99NB0/KFykgljLSMTs=
+github.com/fiddler-labs/intercom-go/interfaces v0.0.0-20250220194224-4ff7641a0712/go.mod h1:D8H2uz0hp2Ay5s2/QPNorlSsg8CcD5pAQ3QJWn2PSjU=
 github.com/google/go-cmp v0.5.2 h1:X2ev0eStA3AbceY54o37/0PQ/UWqKEiiO2dKL5OPaFM=
 github.com/google/go-cmp v0.5.2/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-querystring v1.1.0 h1:AnCroh3fv4ZBgVIf1Iwtovgjaw/GiKJo8M8yD/fhyJ8=

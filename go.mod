@@ -3,7 +3,7 @@ module github.com/fiddler-labs/intercom-go
 go 1.24.0
 
 require (
-	github.com/fiddler-labs/intercom-go/interfaces v0.0.0-20250220193753-b48d3bf54c42
+	github.com/fiddler-labs/intercom-go/interfaces v0.0.0-20250220194224-4ff7641a0712
 	github.com/pborman/uuid v1.2.1
 )
 
