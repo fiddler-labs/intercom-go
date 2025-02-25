@@ -16,7 +16,6 @@ type ContactRepository interface {
 	scroll(scrollParam string) (ContactList, error)
 	create(*Contact) (Contact, error)
 	update(*Contact) (Contact, error)
-	company(*Contact) (Contact, error)
 	convert(*Contact, *User) (User, error)
 	delete(id string) (Contact, error)
 	attachCompany(contactId, companyId string) (Contact, error)
