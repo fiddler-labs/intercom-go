@@ -19,6 +19,7 @@ type ContactRepository interface {
 	company(*Contact) (Contact, error)
 	convert(*Contact, *User) (User, error)
 	delete(id string) (Contact, error)
+	attachCompany(contactId, companyId string) (Contact, error)
 }
 
 // ContactAPI implements ContactRepository
