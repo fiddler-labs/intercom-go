@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/url"
 
-	"gopkg.in/intercom/intercom-go.v2/interfaces"
+	"github.com/fiddler-labs/intercom-go/interfaces"
 )
 
 // ContactRepository defines the interface for working with Contacts through the API.
@@ -17,6 +18,8 @@ type ContactRepository interface {
 	update(*Contact) (Contact, error)
 	convert(*Contact, *User) (User, error)
 	delete(id string) (Contact, error)
+	attachCompany(contactId, companyId string) (Contact, error)
+	unarchive(contactId string) (Contact, error)
 }
 
 // ContactAPI implements ContactRepository
@@ -49,14 +52,14 @@ func (api ContactAPI) list(params contactListParams) (ContactList, error) {
 }
 
 func (api ContactAPI) scroll(scrollParam string) (ContactList, error) {
-       contactList := ContactList{}
-       params := scrollParams{ ScrollParam: scrollParam }
-       data, err := api.httpClient.Get("/contacts/scroll", params)
-       if err != nil {
-               return contactList, err
-       }
-       err = json.Unmarshal(data, &contactList)
-       return contactList, err
+	contactList := ContactList{}
+	params := scrollParams{ScrollParam: scrollParam}
+	data, err := api.httpClient.Get("/contacts/scroll", params)
+	if err != nil {
+		return contactList, err
+	}
+	err = json.Unmarshal(data, &contactList)
+	return contactList, err
 }
 
 func (api ContactAPI) create(contact *Contact) (Contact, error) {
@@ -67,6 +70,27 @@ func (api ContactAPI) create(contact *Contact) (Contact, error) {
 func (api ContactAPI) update(contact *Contact) (Contact, error) {
 	requestContact := api.buildRequestContact(contact)
 	return unmarshalToContact(api.httpClient.Post("/contacts", &requestContact))
+}
+
+func (api ContactAPI) attachCompany(contactId, companyId string) (Contact, error) {
+	path, err := url.JoinPath("/", "contacts", contactId, "companies")
+	if err != nil {
+		return Contact{}, err
+	}
+	type companyRequest struct {
+		CompanyID string `json:"id"`
+	}
+	return unmarshalToContact(api.httpClient.Post(path, companyRequest{
+		CompanyID: companyId,
+	}))
+}
+
+func (api ContactAPI) unarchive(contactId string) (Contact, error) {
+	path, err := url.JoinPath("/", "contacts", contactId, "unarchive")
+	if err != nil {
+		return Contact{}, err
+	}
+	return unmarshalToContact(api.httpClient.Post(path, struct{}{}))
 }
 
 func (api ContactAPI) convert(contact *Contact, user *User) (User, error) {

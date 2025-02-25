@@ -17,7 +17,7 @@ We'll communicate all relevant updates as we build this new team and support str
 
 ## Install
 
-`go get gopkg.in/intercom/intercom-go.v2`
+`go get github.com/fiddler-labs/intercom-go`
 
 ## Usage
 
@@ -25,7 +25,7 @@ We'll communicate all relevant updates as we build this new team and support str
 
 ```go
 import (
-    intercom "gopkg.in/intercom/intercom-go.v2"
+    intercom "github.com/fiddler-labs/intercom-go"
 )
 
 // You can use either an an OAuth or Access Token
@@ -138,7 +138,7 @@ user, err := ic.Users.Delete("46adad3f09126dca")
 #### Contacts are the same as leads
 
 In the Intercom API we refer to contacts as leads. See [here](https://developers.intercom.com/intercom-api-reference/reference#leads) for more info
-We did not change this in the SDK since that would be a major breaking change. This is something we will address shortly. 
+We did not change this in the SDK since that would be a major breaking change. This is something we will address shortly.
 So any reference to contacts in the SDK is a reference to a lead in Intercom
 
 #### Find

@@ -1,7 +1,7 @@
 package intercom
 
 import (
-	"gopkg.in/intercom/intercom-go.v2/interfaces"
+	"github.com/fiddler-labs/intercom-go/interfaces"
 )
 
 // A Client manages interacting with the Intercom API.
@@ -60,8 +60,8 @@ func (c *Client) Option(opts ...option) (previous option) {
 }
 
 // NewClient returns a new Intercom API client, configured with the default HTTPClient.
-func NewClient(appID, apiKey string) *Client {
-	intercom := Client{AppID: appID, APIKey: apiKey, baseURI: defaultBaseURI, debug: false, clientVersion: clientVersion}
+func NewClient(apiKey string, debug bool) *Client {
+	intercom := Client{AppID: "", APIKey: apiKey, baseURI: defaultBaseURI, debug: debug, clientVersion: clientVersion}
 	intercom.HTTPClient = interfaces.NewIntercomHTTPClient(intercom.AppID, intercom.APIKey, &intercom.baseURI, &intercom.clientVersion, &intercom.debug)
 	intercom.setup()
 	return &intercom

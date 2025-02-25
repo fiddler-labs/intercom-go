@@ -38,7 +38,7 @@ func (c IntercomHTTPClient) UserAgentHeader() string {
 func (c IntercomHTTPClient) Get(url string, queryParams interface{}) ([]byte, error) {
 	// Setup request
 	req, _ := http.NewRequest("GET", *c.BaseURI+url, nil)
-	req.SetBasicAuth(c.AppID, c.APIKey)
+	req.Header.Add("Authorization", "Bearer "+c.APIKey)
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("User-Agent", c.UserAgentHeader())
 	addQueryParams(req, queryParams)
@@ -89,7 +89,7 @@ func (c IntercomHTTPClient) postOrPatch(method, url string, body interface{}) ([
 	if err != nil {
 		return nil, err
 	}
-	req.SetBasicAuth(c.AppID, c.APIKey)
+	req.Header.Add("Authorization", "Bearer "+c.APIKey)
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("User-Agent", c.UserAgentHeader())
@@ -118,7 +118,7 @@ func (c IntercomHTTPClient) postOrPatch(method, url string, body interface{}) ([
 func (c IntercomHTTPClient) Delete(url string, queryParams interface{}) ([]byte, error) {
 	// Setup request
 	req, _ := http.NewRequest("DELETE", *c.BaseURI+url, nil)
-	req.SetBasicAuth(c.AppID, c.APIKey)
+	req.Header.Add("Authorization", "Bearer "+c.APIKey)
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("User-Agent", c.UserAgentHeader())
 	addQueryParams(req, queryParams)
