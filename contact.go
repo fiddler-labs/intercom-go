@@ -97,6 +97,11 @@ func (c *ContactService) AttachCompany(contactId, companyId string) (Contact, er
 	return c.Repository.attachCompany(contactId, companyId)
 }
 
+// Unarchive Contact
+func (c *ContactService) Unarchive(contactId string) (Contact, error) {
+	return c.Repository.unarchive(contactId)
+}
+
 // Update Contact
 func (c *ContactService) Update(contact *Contact) (Contact, error) {
 	return c.Repository.update(contact)

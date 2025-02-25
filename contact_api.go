@@ -19,6 +19,7 @@ type ContactRepository interface {
 	convert(*Contact, *User) (User, error)
 	delete(id string) (Contact, error)
 	attachCompany(contactId, companyId string) (Contact, error)
+	unarchive(contactId string) (Contact, error)
 }
 
 // ContactAPI implements ContactRepository
@@ -82,6 +83,14 @@ func (api ContactAPI) attachCompany(contactId, companyId string) (Contact, error
 	return unmarshalToContact(api.httpClient.Post(path, companyRequest{
 		CompanyID: companyId,
 	}))
+}
+
+func (api ContactAPI) unarchive(contactId string) (Contact, error) {
+	path, err := url.JoinPath("/", "contacts", contactId, "unarchive")
+	if err != nil {
+		return Contact{}, err
+	}
+	return unmarshalToContact(api.httpClient.Post(path, struct{}{}))
 }
 
 func (api ContactAPI) convert(contact *Contact, user *User) (User, error) {
