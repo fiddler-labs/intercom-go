@@ -72,7 +72,7 @@ func (api ContactAPI) update(contact *Contact) (Contact, error) {
 }
 
 func (api ContactAPI) attachCompany(contactId, companyId string) (Contact, error) {
-	path, err := url.JoinPath("", "contacts", contactId, "companies")
+	path, err := url.JoinPath("/", "contacts", contactId, "companies")
 	if err != nil {
 		return Contact{}, err
 	}
